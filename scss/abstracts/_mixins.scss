@@ -1,0 +1,59 @@
+@use 'sass:map';
+
+
+// -----Mixin responsive-----
+
+
+@mixin respond-to($breakpoints, $breakpoint) {
+  $value: map.get($breakpoints, $breakpoint);
+
+  @if $value == null {
+    @warn "Breakpoint `#{$breakpoint}` introuvable dans $breakpoints.";
+  } @else {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}
+
+
+// -----Mise en place des types de boutons-----
+
+@mixin btn-theme($name, $shades) {
+  $color-500: map.get($shades, 500);
+  $color-700: map.get($shades, 700);
+  $color-100: map.get($shades, 100);
+
+  // --- SOLID
+  &--solid-#{$name} {
+    background-color: $color-500;
+    border-color: $color-500;
+    color: #fff;
+    &:hover { background-color: $color-700; border-color: $color-700; }
+  }
+
+  // --- OUTLINE
+  &--outline-#{$name} {
+    background-color: transparent;
+    border-color: $color-500;
+    color: $color-500;
+    &:hover { background-color: $color-500; color: #fff; }
+  }
+
+  // --- GHOST
+  &--ghost-#{$name} {
+    background-color: transparent;
+    border-color: transparent;
+    color: $color-500;
+    &:hover { background-color: $color-100; }
+  }
+
+  // --- FOCUS (Accessibilité)
+  &--solid-#{$name}, &--outline-#{$name}, &--ghost-#{$name} {
+    &:focus-visible {
+      outline: 3px solid $color-500;
+      outline-offset: 3px;
+    }
+  }
+}
+

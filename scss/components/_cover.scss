@@ -1,0 +1,138 @@
+@use '../abstracts/mixins' as b;
+
+
+
+// -----Variables locales-----
+
+$cover-height-fixed  : 600px;
+$cover-overlay-opacity : 0.5;
+$cover-transition    : all 0.3s ease;
+
+
+// -----Base des covers-----
+
+.cover {
+  position        : relative;
+  width           : 100%;
+  min-height      : $cover-height-fixed;
+  display         : flex;
+  align-items     : center;
+  overflow        : hidden; 
+  background-color: var(--color-bg-subtle);
+}
+
+
+// -----Hauteurs-----
+
+// Hauteur fixe (défaut)
+.cover--fixed {
+  min-height: $cover-height-fixed;
+}
+
+// Plein écran
+.cover--full {
+  min-height: 100vh;
+}
+
+// ── 4. Contenu ────────────────────────────────────────────
+//    .cover__content est le bloc de texte + bouton.
+//    z-index: 2 pour qu'il passe au dessus de l'image/vidéo.
+
+.cover__content {
+  position  : relative;
+  z-index   : 2;
+  width     : 100%;
+  padding   : 4rem 2rem;
+
+  .cover__title {
+    font-size  : clamp(2rem, 5vw, 4rem);  // Taille fluide selon l'écran
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .cover__subtitle {
+    font-size    : clamp(1rem, 2vw, 1.35rem);
+    font-weight  : 400;
+    margin-bottom: 2rem;
+    opacity      : 0.85;
+  }
+
+  .cover__actions {
+    display  : flex;
+    flex-wrap: wrap;    // Les boutons passent à la ligne sur mobile
+    gap      : 1rem;
+  }
+}
+
+
+// -----Alignement-----
+
+.cover--center {
+  .cover__content {
+    text-align    : center;
+    align-items   : center;
+
+    .cover__actions {
+      justify-content: center;
+    }
+  }
+}
+
+
+.cover--left {
+  .cover__content {
+    text-align : left;
+    align-items: flex-start;
+  }
+}
+
+.cover--right {
+  .cover__content {
+    text-align : right;
+    align-items: flex-start;
+  }
+}
+
+
+// -----Image de fond-----
+
+.cover--image {
+  .cover__bg-image {
+    position  : absolute;
+    inset     : 0;           // Raccourci pour top/right/bottom/left: 0
+    width     : 100%;
+    height    : 100%;
+    object-fit: cover;
+    z-index   : 0;
+  }
+}
+
+
+// -----Vidéo de Fond-----
+
+//    autoplay + muted + loop dans le HTML pour que ça fonctionne. (information de Claude IA à essayer)
+
+.cover--video {
+  .cover__bg-video {
+    position  : absolute;
+    inset     : 0;
+    width     : 100%;
+    height    : 100%;
+    object-fit: cover;
+    z-index   : 0;
+  }
+}
+
+
+// -----Voile Sombre-----
+
+//    S'ajoute avec la classe .cover--overlay sur le .cover parent. (information de Claude IA à essayer)
+
+.cover--overlay::after {
+  content         : '';
+  position        : absolute;
+  inset           : 0;
+  background-color: rgba(0, 0, 0, $cover-overlay-opacity);
+  z-index         : 1;   // Au dessus de l'image, en dessous du contenu
+}

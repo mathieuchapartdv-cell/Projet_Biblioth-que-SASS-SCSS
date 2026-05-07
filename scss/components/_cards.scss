@@ -1,0 +1,142 @@
+@use 'sass:map';
+@use '../abstracts/mixins' as b;
+
+// -----Variables classique-----
+
+$card-radius     : 12px;
+$card-padding    : 1.5rem;
+$card-transition : all 0.25s ease;
+$card-shadow     : 0 2px 8px rgba(0, 0, 0, 0.08);
+$card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.14);
+
+// -----Base des card-----
+
+.card {
+  position        : relative;
+  display         : flex;
+  flex-direction  : column; 
+  background-color: var(--color-bg);
+  border-radius   : $card-radius;
+  border          : 1px solid var(--color-border);
+  box-shadow      : $card-shadow;
+  overflow        : hidden;
+  transition      : $card-transition;
+}
+
+// -----Hover-----
+
+.card--hoverable {
+  cursor: pointer;
+
+  &:hover {
+    transform : translateY(-4px);
+    box-shadow: $card-shadow-hover;
+  }
+}
+
+// -----Image-----
+
+.card__image {
+  width       : 100%;
+  aspect-ratio: 16 / 9;
+  overflow    : hidden;
+
+  img {
+    width     : 100%;
+    height    : 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+}
+
+// Pour zoomer lorsqu'il y a un hover
+.card--hoverable:hover .card__image img {
+  transform: scale(1.04);
+}
+
+// -----Corps-----
+
+.card__body {
+  flex   : 1;
+  padding: $card-padding;
+  display: flex;
+  flex-direction: column;
+  gap    : 0.75rem;
+}
+
+.card__title {
+  font-size  : 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.card__subtitle {
+  font-size: 0.875rem;
+  color    : var(--color-text-muted);
+}
+
+.card__text {
+  font-size  : 0.95rem;
+  line-height: 1.6;
+  color      : var(--color-text);
+  flex       : 1; 
+}
+
+// -----Actions dans la card-----
+
+//    Le "margin-top: auto" pousse le bloc boutons tout en bas de la card, même si le texte est court.
+.card__actions {
+  display        : flex;
+  flex-wrap      : wrap;
+  gap            : 0.75rem;
+  margin-top     : auto;
+  padding-top    : 0.75rem;
+  border-top     : 1px solid var(--color-border);
+}
+
+// -----Variante horizontal-----
+
+.card--horizontal {
+    $test: "md";
+    @include b.respond-to($breakpoints, $test) { 
+        flex-direction: row;
+
+        .card__image {
+            width       : 220px;
+            min-width   : 220px;
+            aspect-ratio: auto;
+            height      : auto;
+        }
+    }
+}
+
+
+// -----Variante sans image-----
+
+.card--colored-header {
+  .card__header {
+    padding         : $card-padding;
+    background-color: var(--color-primary); //Voir peut-être pour créer un mixin pour changer plus rapidement la couleur de la card
+    color           : #fff;
+  }
+}
+
+// -----Variante pour statistiques-----
+
+.card--stat {
+  text-align: center;
+  padding   : $card-padding;
+
+  .card__stat-value {
+    font-size  : clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color      : var(--color-primary); //Voir peut-être pour créer un mixin pour changer plus rapidement la couleur de la card
+    line-height: 1;
+  }
+
+  .card__stat-label {
+    font-size  : 0.9rem;
+    color      : var(--color-text-muted); 
+    margin-top : 0.5rem;
+  }
+}

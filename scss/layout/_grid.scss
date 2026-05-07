@@ -1,0 +1,75 @@
+// -----Mixin responsive-----
+
+@use '../abstracts/mixins' as a;
+
+
+// Système de grille - 16 colonnes / CSS Grid
+
+// -----Variables de grille-----
+
+$grid-columns : 16;
+$grid-gap : 1.5rem; //24px
+$container-max: 1440px;
+
+
+// -----Breakpoints-----
+
+$breakpoints: (
+    "sm": 576px,
+    "md": 768px,
+    "lg": 1024px,
+    "xl": 1280px,
+);
+
+
+
+
+
+// -----container-----
+
+.container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;         // Pour centrer horizontalement
+  padding-inline: $grid-gap; 
+}
+
+// -----Grid-----
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(#{$grid-columns}, 1fr);
+  gap: $grid-gap;
+}
+
+
+// -----Colonnes-----
+
+.col-auto {
+    grid-column: auto;
+}
+
+.col-full {
+    grid-column: 1 / -1;
+}
+
+
+// Colonnes de base (sans breakpoint = mobile first)
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    grid-column: span #{$i};
+  }
+}
+
+// Colonnes responsive — ex: .col-md-8
+@each $name, $value in $breakpoints {
+  @include a.respond-to($name, $breakpoints) {
+    @for $i from 1 through $grid-columns {
+      .col-#{$name}-#{$i} {
+        grid-column: span #{$i};
+      }
+    }
+  }
+}
+
+

@@ -1,0 +1,232 @@
+@use 'sass:math';
+
+
+// Fait avec Claude IA car aucune expérience dans la réalisation de carousel
+
+
+// -----Variables locales-----
+
+$carousel-radius      : 12px;
+$carousel-ratio       : math.div(16, 7);
+$carousel-transition  : transform 0.5s ease;
+$carousel-arrow-size  : 40px;
+$carousel-dot-size    : 8px;
+$carousel-dot-active-w: 24px;
+
+
+// -----Conteneur principal-----
+
+.carousel {
+  position     : relative;
+  width        : 100%;
+  overflow     : hidden;
+  border-radius: $carousel-radius;
+  background   : var(--color-bg-subtle);
+}
+
+
+// -----Track (piste)-----
+//Continent les slides côte à côte.
+
+.carousel__track {
+  display   : flex;
+  transition: $carousel-transition;
+  will-change: transform;  // Optimise les performances d'animation d'après Claude AI
+}
+
+
+// -----Slide-----
+
+.carousel__slide {
+  flex-shrink : 0;
+  width       : 100%;
+  aspect-ratio: $carousel-ratio;
+  display     : flex;
+  align-items : center;
+  justify-content: center;
+  flex-direction : column;
+  gap         : 0.5rem;
+  padding     : 2rem;
+  text-align  : center;
+
+  img {
+    width     : 100%;
+    height    : 100%;
+    object-fit: cover;
+    position  : absolute;
+    inset     : 0;
+  }
+}
+
+.carousel__slide-title {
+  font-size  : clamp(1.25rem, 3vw, 2rem);
+  font-weight: 600;
+  color      : var(--color-text);
+  position   : relative;  // Au dessus de l'image si présente
+  z-index    : 2;
+}
+
+.carousel__slide-text {
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  color    : var(--color-text-muted);
+  position : relative;
+  z-index  : 2;
+}
+
+
+// -----Voile sur les slides avec image-----
+// A voir ce que c'est, et comment l'adapter à mes goûts
+
+.carousel__slide--overlay::before {
+  content   : '';
+  position  : absolute;
+  inset     : 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index   : 1;
+}
+
+.carousel__slide--overlay .carousel__slide-title,
+.carousel__slide--overlay .carousel__slide-text {
+  color: #fff;
+}
+
+
+// -----Flèches-----
+
+.carousel__arrow {
+  position  : absolute;
+  top       : 50%;
+  transform : translateY(-50%);
+  width     : $carousel-arrow-size;
+  height    : $carousel-arrow-size;
+  border-radius: 50%;
+  border    : none;
+  cursor    : pointer;
+  font-size : 1.2rem;
+  display   : flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index   : 3;
+
+  // Style classique par défaut
+  background: rgba(255, 255, 255, 0.9);
+  color     : #333;
+
+  &:hover {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &--prev { left : 1rem; }
+  &--next { right: 1rem; }
+}
+
+
+// -----Dots (les indicateurs de positionnement dans le carousel)-----
+
+.carousel__dots {
+  display        : flex;
+  justify-content: center;
+  gap            : 6px;
+  padding        : 0.75rem 0;
+}
+
+.carousel__dot {
+  width        : $carousel-dot-size;
+  height       : $carousel-dot-size;
+  border-radius: 50%;
+  border       : none;
+  cursor       : pointer;
+  transition   : all 0.3s ease;
+  padding      : 0;
+
+  // Style classique par défaut
+  background: var(--color-border);
+
+  &.is-active {
+    width        : $carousel-dot-active-w;
+    border-radius: 9999px;
+    background   : var(--color-text);
+  }
+}
+
+
+// -----Compteur-----
+
+.carousel__counter {
+  position  : absolute;
+  bottom    : 0.75rem;
+  right     : 1rem;
+  font-size : 0.8rem;
+  color     : var(--color-text-muted);
+  z-index   : 3;
+}
+
+
+// -----Autoplay - indicateur de pogression-----
+
+.carousel__progress {
+  position  : absolute;
+  bottom    : 0;
+  left      : 0;
+  height    : 3px;
+  background: var(--color-primary);
+  transition: width linear;
+  z-index   : 3;
+}
+
+
+
+// -----VARIANTE MEDIEVAL-----
+
+.carousel--medieval {
+  background  : #1a1208;
+  border      : 1px solid #3d2e10;
+
+  // Texte doré
+  .carousel__slide-title { color: #e8d5a3; }
+  .carousel__slide-text  { color: #9e8660; }
+
+  // Flèches
+  .carousel__arrow {
+    background  : rgba(139, 105, 20, 0.3);
+    color       : #e8d5a3;
+    border      : 1px solid #4a3818;
+
+    &:hover {
+      background: rgba(139, 105, 20, 0.6);
+      box-shadow: 0 2px 8px rgba(139, 105, 20, 0.3);
+    }
+  }
+
+  // Dots
+  .carousel__dot {
+    background: #3d2e10;
+
+    &.is-active {
+      background: #e8d5a3;
+    }
+  }
+
+  // Compteur
+  .carousel__counter { color: #6b5a2e; }
+
+  // Barre de progression
+  .carousel__progress { background: #8b6914; }
+}
+
+
+// -----Ornements médiévaux-----
+
+.carousel__ornament {
+  position : absolute;
+  font-size: 1rem;
+  color    : #4a3818;
+  z-index  : 3;
+
+  &--tl { top: 0.5rem;    left : 0.75rem; }
+  &--tr { top: 0.5rem;    right: 0.75rem; }
+  &--bl { bottom: 0.5rem; left : 0.75rem; }
+  &--br { bottom: 0.5rem; right: 0.75rem; }
+}

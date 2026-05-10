@@ -1,41 +1,117 @@
   
   
   /* -----FONT-FAMILY----- */
-@import url('https://fonts.google.com/specimen/Jim+Nightshade?preview.script=Latn');
+@import url('https://fonts.googleapis.com/css2?family=Jim+Nightshade&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap');
 
-.jim-nightshade-regular {
-  font-family: "Jim Nightshade", cursive;
+.font-jim-nightshade {
+  font-family: 'Jim Nightshade', cursive;
   font-weight: 400;
-  font-style: normal;
+  font-style : normal;
 }
 
-.josefin-slab {
-  font-family: "Josefin Slab", serif;
+.font-josefin-slab {
+  font-family        : 'Josefin Slab', serif;
   font-optical-sizing: auto;
-  font-weight: weight;
-  font-style: normal;
+  font-weight        : 400;  
+  font-style         : normal;
 }
 
 
-    /* -----Typrographie----- */
-$--text-xs:   0.75rem;   /*  12px */
-$--text-sm:   0.875rem;  /*  14px */
-$--text-base: 1rem;      /*  16px */
-$--text-lg:   1.125rem;  /*  18px */
-$--text-xl:   1.25rem;   /*  20px */
-$--text-2xl:  1.5rem;    /*  24px */
-$--text-3xl:  1.875rem;  /*  30px */
-$--text-4xl:  2.25rem;   /*  36px */
+    /* -----Tailles de texte----- */
+$text-xs:   0.75rem;   /*  12px */
+$text-sm:   0.875rem;  /*  14px */
+$text-base: 1rem;      /*  16px */
+$text-lg:   1.125rem;  /*  18px */
+$text-xl:   1.25rem;   /*  20px */
+$text-2xl:  1.5rem;    /*  24px */
+$text-3xl:  1.875rem;  /*  30px */
+$text-4xl:  2.25rem;   /*  36px */
 
 
     /* -----Espacements----- */
-$--space-1:  0.25rem;  /*  4px */
-$--space-2:  0.5rem;   /*  8px */
-$--space-3:  0.75rem;  /* 12px */
-$--space-4:  1rem;     /* 16px */
-$--space-6:  1.5rem;   /* 24px */
-$--space-8:  2rem;     /* 32px */
-$--space-10: 2.5rem;   /* 40px */
-$--space-12: 3rem;     /* 48px */
-$--space-16: 4rem;     /* 64px */
+$space-1:  0.25rem;  /*  4px */
+$space-2:  0.5rem;   /*  8px */
+$space-3:  0.75rem;  /* 12px */
+$space-4:  1rem;     /* 16px */
+$space-6:  1.5rem;   /* 24px */
+$space-8:  2rem;     /* 32px */
+$space-10: 2.5rem;   /* 40px */
+$space-12: 3rem;     /* 48px */
+$space-16: 4rem;     /* 64px */
+
+
+// -----Gérer les tailles de textes-----
+
+$text-sizes: (
+  'xs'  : $text-xs,
+  'sm'  : $text-sm,
+  'base': $text-base,
+  'lg'  : $text-lg,
+  'xl'  : $text-xl,
+  '2xl' : $text-2xl,
+  '3xl' : $text-3xl,
+  '4xl' : $text-4xl,
+);
+
+@each $name, $size in $text-sizes {
+  .text-#{$name} { font-size: $size; }
+}
+
+
+// -----Classes utilitaires --> alignement-----
+
+.text-left   { text-align: left;    }
+.text-center { text-align: center;  }
+.text-right  { text-align: right;   }
+.text-justify{ text-align: justify; }
+
+
+// -----Classes utilitaires --> taille-----
+
+.font-light  { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-bold   { font-weight: 700; }
+
+
+// -----Classes utilitaires --> style-----
+
+.italic      { font-style: italic;  }
+.not-italic  { font-style: normal;  }
+.uppercase   { text-transform: uppercase;  }
+.lowercase   { text-transform: lowercase;  }
+.capitalize  { text-transform: capitalize; }
+
+
+// -----Classes utilitaires --> espacements-----
+
+$spaces: (
+  '1' : $space-1,
+  '2' : $space-2,
+  '3' : $space-3,
+  '4' : $space-4,
+  '6' : $space-6,
+  '8' : $space-8,
+  '10': $space-10,
+  '12': $space-12,
+  '16': $space-16,
+);
+
+@each $name, $value in $spaces {
+  .mt-#{$name}  { margin-top    : $value; }
+  .mb-#{$name}  { margin-bottom : $value; }
+  .ml-#{$name}  { margin-left   : $value; }
+  .mr-#{$name}  { margin-right  : $value; }
+  .mx-#{$name}  { margin-left   : $value; margin-right : $value; }
+  .my-#{$name}  { margin-top    : $value; margin-bottom: $value; }
+  .m-#{$name}   { margin        : $value; }
+
+  .pt-#{$name}  { padding-top   : $value; }
+  .pb-#{$name}  { padding-bottom: $value; }
+  .pl-#{$name}  { padding-left  : $value; }
+  .pr-#{$name}  { padding-right : $value; }
+  .px-#{$name}  { padding-left  : $value; padding-right : $value; }
+  .py-#{$name}  { padding-top   : $value; padding-bottom: $value; }
+  .p-#{$name}   { padding       : $value; }
+}
 

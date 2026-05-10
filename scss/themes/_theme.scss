@@ -1,12 +1,177 @@
     /* -----Couleurs----- */
-$--first-color: #1B1410;
-$--second-color: #5D4B2F;
-$--accent-color: #8D6B24;
-$--color-bg : #2E2016;
+$first-color: #1B1410;
+$second-color: #5D4B2F;
+$accent-color: #8D6B24;
+$color-bg : #2E2016;
 
-$--color-h1: #D8A749;
-$--color-h2_h4: #D8A73F;
-$--color-text: #fff;
-$--colo-border: #5D4B2F ;
+$color-h1: #D8A749;
+$color-h2_h4: #D8A73F;
+$color-text: #fff;
+$colo-border: #5D4B2F ;
 
-    
+
+
+
+// -----THEMES DARK-----
+
+// Les thèmes dark commun et la variante noir plus profond ont été conseillé par Claude.AI, la version "médiéval" 
+// est faites par mes soins
+
+// -----Thème clair par défaut-----
+
+:root {
+  // Fonds
+  --color-bg        : #ffffff;
+  --color-bg-subtle : #f9fafb;
+  --color-bg-muted  : #f3f4f6;
+
+  --color-text      : #1a1a2e;
+  --color-text-muted: #6b7280;
+
+  --color-border    : #e5e7eb;
+  --color-border-md : #d1d5db;
+
+  --color-bg-success: #f0fdf4;
+  --color-bg-danger : #fef2f2;
+  --color-bg-warning: #fffbeb;
+  --color-bg-info   : #eff6ff;
+
+  --color-success   : #15803d;
+  --color-danger    : #b91c1c;
+  --color-warning   : #b45309;
+  --color-info      : #1d4ed8;
+
+  --color-border-success: #bbf7d0;
+  --color-border-danger : #fecaca;
+  --color-border-warning: #fde68a;
+  --color-border-info   : #bfdbfe;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.10);
+}
+
+
+// -----Mixin dark commun-----
+
+@mixin dark-base($bg, $bg-subtle, $bg-muted, $border, $border-md) {
+  --color-bg        : #{$bg};
+  --color-bg-subtle : #{$bg-subtle};
+  --color-bg-muted  : #{$bg-muted};
+
+  --color-text      : #f1f5f9;
+  --color-text-muted: #94a3b8;
+
+  --color-border    : #{$border};
+  --color-border-md : #{$border-md};
+
+  --color-bg-success: #14532d;
+  --color-bg-danger : #7f1d1d;
+  --color-bg-warning: #78350f;
+  --color-bg-info   : #1e3a5f;
+
+  --color-success   : #86efac;
+  --color-danger    : #fca5a5;
+  --color-warning   : #fcd34d;
+  --color-info      : #93c5fd;
+
+  --color-border-success: #166534;
+  --color-border-danger : #991b1b;
+  --color-border-warning: #92400e;
+  --color-border-info   : #1e40af;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+
+// -----Variante avec un thème plus sombre-----
+//    Activation manuelle : <html class="dark-deep">
+//    Activation système  : prefers-color-scheme: dark
+
+:root.dark-deep {
+  @include dark-base(
+    #0f172a,   // bg        — bleu nuit profond
+    #1e293b,   // bg-subtle — surface légèrement plus claire
+    #263144,   // bg-muted  — surface secondaire
+    #334155,   // border
+    #475569,   // border-md
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.dark-soft) {    // Ne s'applique pas si dark-soft est forcé
+    @include dark-base(
+      #0f172a,
+      #1e293b,
+      #263144,
+      #334155,
+      #475569,
+    );
+  }
+}
+
+
+// -----Variantes plus douce-----
+
+:root.dark-soft {
+  @include dark-base(
+    #1e2533,   // bg        — gris-bleu doux
+    #28304a,   // bg-subtle
+    #313a56,   // bg-muted
+    #374160,   // border
+    #4a5578,   // border-md
+  );
+}
+
+
+// -----Variantes médiévale-----
+
+:root.dark-medieval {
+  @include dark-base(
+    #1a1208,   // bg        — brun-noir profond, bois brûlé
+    #231809,   // bg-subtle — surface légèrement plus claire
+    #2e2010,   // bg-muted  — surface secondaire
+    #3d2e10,   // border    — bordure brun doré
+    #4a3818,   // border-md — bordure plus marquée
+  );
+
+  --color-text      : #e8d5a3;   // Parchemin doré
+  --color-text-muted: #9e8660;   // Brun chaud
+
+  --color-primary   : #8b6914;
+
+  --color-bg-success: #0e2e14;
+  --color-bg-danger : #3d0e0e;
+  --color-bg-warning: #3d2e10;
+  --color-bg-info   : #0e1e3d;
+
+  --color-success   : #86efac;
+  --color-danger    : #fca5a5;
+  --color-warning   : #fcd34d;
+  --color-info      : #93c5fd;
+
+  --color-border-success: #166534;
+  --color-border-danger : #7f1d1d;
+  --color-border-warning: #4a3818;
+  --color-border-info   : #1e3a5f;
+
+  --shadow-sm: 0 1px 2px rgba(139, 105, 20, 0.2);
+  --shadow-md: 0 4px 6px rgba(139, 105, 20, 0.3);
+  --shadow-lg: 0 10px 15px rgba(139, 105, 20, 0.4);
+}
+
+
+// -----Transitions globales-----
+
+*,
+*::before,
+*::after {
+  transition:
+    background-color 0.3s ease,
+    color            0.3s ease,
+    border-color     0.3s ease,
+    box-shadow       0.3s ease;
+}
+

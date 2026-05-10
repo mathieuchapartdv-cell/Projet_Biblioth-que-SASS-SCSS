@@ -1,0 +1,293 @@
+
+
+
+// -----Variables locales-----
+
+$dropdown-radius    : 8px;
+$dropdown-padding   : 4px 0;
+$dropdown-min-width : 180px;
+$dropdown-shadow    : 0 4px 16px rgba(0, 0, 0, 0.10);
+$dropdown-transition: opacity 0.2s ease, transform 0.2s ease;
+$dropdown-item-padding: 0.55rem 1rem;
+
+
+// -----Conteneur-----
+
+.dropdown {
+  position: relative;
+  display : inline-block;
+}
+
+
+// -----Déclencheur-----
+
+.dropdown__trigger {
+  display    : inline-flex;
+  align-items: center;
+  gap        : 0.4rem;
+  cursor     : pointer;
+  background : none;
+  border     : none;
+  font-size  : inherit;
+  font-family: inherit;
+  color      : inherit;
+  padding    : 0;
+}
+
+.dropdown__arrow {
+  font-size : 0.65rem;
+  transition: transform 0.2s ease;
+  display   : inline-block;
+}
+
+// Rotation de la flèche quand ouvert
+.dropdown.is-open .dropdown__arrow {
+  transform: rotate(180deg);
+}
+
+
+// -----Menu déroulant-----
+
+//    Invisible par défaut, apparaît avec la classe .is-open
+//    sur le .dropdown parent.
+
+.dropdown__menu {
+  position     : absolute;
+  top          : calc(100% + 6px);  // 6px de marge sous le déclencheur
+  left         : 0;
+  min-width    : $dropdown-min-width;
+  padding      : $dropdown-padding;
+  background   : var(--color-bg);
+  border       : 1px solid var(--color-border);
+  border-radius: $dropdown-radius;
+  box-shadow   : $dropdown-shadow;
+  z-index      : 100;
+  transition   : $dropdown-transition;
+
+  // Caché par défaut
+  opacity       : 0;
+  visibility    : hidden;
+  transform     : translateY(-8px);
+  pointer-events: none;
+
+  // Visible quand ouvert
+  .dropdown.is-open & {
+    opacity       : 1;
+    visibility    : visible;
+    transform     : translateY(0);
+    pointer-events: auto;
+  }
+}
+
+
+// -----Alignement du panneau-----
+
+.dropdown--right .dropdown__menu {
+  left : auto;
+  right: 0;
+}
+
+
+// -----Item-----
+
+.dropdown__item {
+  display        : flex;
+  align-items    : center;
+  gap            : 0.6rem;
+  padding        : $dropdown-item-padding;
+  font-size      : 0.9rem;
+  color          : var(--color-text);
+  text-decoration: none;
+  cursor         : pointer;
+  border         : none;
+  background     : none;
+  width          : 100%;
+  text-align     : left;
+  transition     : background 0.15s ease;
+
+  &:hover {
+    background: var(--color-bg-subtle);
+  }
+
+  // Item actif (page courante dans une navigation)
+  &.is-active {
+    color      : var(--color-primary);
+    font-weight: 600;
+  }
+
+  // Item danger (supprimer, déconnexion, etc.)
+  &--danger {
+    color: var(--color-danger, #ef4444);
+
+    &:hover {
+      background: var(--color-bg-danger, #fef2f2);
+    }
+  }
+
+  // Item désactivé
+  &:disabled,
+  &.is-disabled {
+    opacity       : 0.4;
+    cursor        : not-allowed;
+    pointer-events: none;
+  }
+}
+
+
+// -----Icone dans l'item-----
+
+.dropdown__icon {
+  font-size : 1.1rem;
+  color     : var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.dropdown__item--danger .dropdown__icon {
+  color: var(--color-danger, #ef4444);
+}
+
+
+// -----Séparateur-----
+
+.dropdown__divider {
+  border    : none;
+  border-top: 1px solid var(--color-border);
+  margin    : 4px 0;
+}
+
+
+// -----Organisation des items par catégorie-----
+
+.dropdown__header {
+  padding      : 0.5rem 1rem 0.25rem;
+  font-size    : 0.7rem;
+  font-weight  : 600;
+  color        : var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// ── 10. VARIANTE NAVIGATION ───────────────────────────────
+// ═══════════════════════════════════════════════════════════
+//    Utilisé dans les barres de navigation.
+//    Le déclencheur hérite du style de la navbar.
+
+.dropdown--nav {
+  .dropdown__trigger {
+    padding  : 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    color    : var(--color-text);
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// ── 11. VARIANTE ACTIONS ──────────────────────────────────
+// ═══════════════════════════════════════════════════════════
+//    Utilisé avec un bouton stylisé comme déclencheur.
+//    Le déclencheur a un fond et une bordure.
+
+.dropdown--actions {
+  .dropdown__trigger {
+    padding      : 0.5rem 1rem;
+    font-size    : 0.875rem;
+    font-weight  : 500;
+    background   : var(--color-bg);
+    border       : 1px solid var(--color-border);
+    border-radius: 6px;
+    transition   : all 0.2s ease;
+
+    &:hover {
+      background  : var(--color-bg-subtle);
+      border-color: var(--color-border-md, var(--color-border));
+    }
+  }
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// ── 12. VARIANTE MÉDIÉVALE ────────────────────────────────
+// ═══════════════════════════════════════════════════════════
+
+.dropdown--medieval {
+
+  // Déclencheur
+  .dropdown__trigger {
+    color      : #e8d5a3;
+    font-weight: 500;
+    padding    : 0.5rem 1rem;
+    background : #1a1208;
+    border     : 1px solid #3d2e10;
+    border-radius: 6px;
+
+    &:hover {
+      background: #231809;
+    }
+  }
+
+  .dropdown__arrow {
+    color: #6b5a2e;
+  }
+
+  // Panneau
+  .dropdown__menu {
+    background   : #1a1208;
+    border-color : #3d2e10;
+    box-shadow   : 0 4px 16px rgba(139, 105, 20, 0.2);
+  }
+
+  // Items
+  .dropdown__item {
+    color: #e8d5a3;
+
+    &:hover {
+      background: #231809;
+    }
+
+    &.is-active {
+      color: #fcd34d;
+    }
+  }
+
+  .dropdown__item--danger {
+    color: #fca5a5;
+
+    &:hover {
+      background: #3d0e0e;
+    }
+  }
+
+  // Icônes
+  .dropdown__icon {
+    color: #6b5a2e;
+  }
+
+  .dropdown__item--danger .dropdown__icon {
+    color: #fca5a5;
+  }
+
+  // Séparateur
+  .dropdown__divider {
+    border-top-color: #3d2e10;
+  }
+
+  // En-tête
+  .dropdown__header {
+    color: #6b5a2e;
+  }
+
+  // Ornements
+  .dropdown__ornament {
+    text-align: center;
+    font-size : 0.7rem;
+    color     : #4a3818;
+    padding   : 4px 0;
+  }
+}
+

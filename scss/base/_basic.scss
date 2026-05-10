@@ -1,46 +1,94 @@
+@use 'sass:map';
+
 
     /* -----Bordures----- */
-$--border-width-xs : 1px;
-$--border-width-sm : 2px;
-$--border-width-lg : 4px;
-$--border-width-xl : 6px;
+$border-width-xs : 1px;
+$border-width-sm : 2px;
+$border-width-lg : 4px;
+$border-width-xl : 6px;
 
-$--border-bot-width-xs : 1px;
-$--border-bot-width-sm : 2px;
-$--border-bot-width-lg : 4px;
-$--border-bot-width-xl : 6px;
-    
-$--border-top-width-xs : 1px;
-$--border-top-width-sm : 2px;
-$--border-top-width-lg : 4px;
-$--border-top-width-xl : 6px;
-
-$--border-rig-width-xs : 1px;
-$--border-rig-width-sm : 2px;
-$--border-rig-width-lg : 4px;
-$--border-rig-width-xl : 6px;
-
-$--border-lef-width-xs : 1px;
-$--border-lef-width-sm : 2px;
-$--border-lef-width-lg : 4px;
-$--border-lef-width-xl : 6px;
 
 
     /* -----Angles----- */
-$--radius-xs: 4px;
-$--radius-sm: 8px;
-$--radius-lg: 12px;
-$--radius-xl: 16px;
-$--radius-2xl: 24px;
-$--radius-3xl: 32px;
-$--radius-4xl: 40px;
-$--radius-circle: 9999px;
+$radius-xs: 4px;
+$radius-sm: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-2xl: 24px;
+$radius-3xl: 32px;
+$radius-4xl: 40px;
+$radius-circle: 9999px;
 
-$--radius-t_l-xs: 4px;
-$--radius-t_l-sm: 8px;
-$--radius-t_l-lg: 12px;
-$--radius-t_l-xl: 16px;
-$--radius-t_l-2xl: 24px;
-$--radius-t_l-3xl: 32px;
-$--radius-t_l-4xl: 40px;
 
+
+// -----Génération des différentes tailles de bordures sur les 4 côtés-----
+
+$border-widths: (
+  'xs': $border-width-xs,
+  'sm': $border-width-sm,
+  'lg': $border-width-lg,
+  'xl': $border-width-xl,
+);
+
+@each $name, $value in $border-widths {
+  .border-#{$name} {
+    border-width: $value;
+    border-style: solid;
+  }
+}
+
+// ----- Génération des différentes tailles de bordures pour chaque côtés individuellement-----
+
+$border-sides: (
+  'top'  : 'border-top-width',
+  'bot'  : 'border-bottom-width',
+  'left' : 'border-left-width',
+  'right': 'border-right-width',
+);
+
+@each $side, $prop in $border-sides {
+  @each $name, $value in $border-widths {
+    .border-#{$side}-#{$name} {
+      #{$prop} : $value;
+      border-style: solid;
+    }
+  }
+}
+
+
+// -----Générations des angles pour les 4 angles simultanément-----
+
+$radii: (
+  'xs'    : $radius-xs,
+  'sm'    : $radius-sm,
+  'lg'    : $radius-lg,
+  'xl'    : $radius-xl,
+  '2xl'   : $radius-2xl,
+  '3xl'   : $radius-3xl,
+  '4xl'   : $radius-4xl,
+  'circle': $radius-circle,
+);
+
+@each $name, $value in $radii {
+  .rounded-#{$name} {
+    border-radius: $value;
+  }
+}
+
+
+// ----- Génération des différentes tailles de angles pour chaque angles individuellement-----
+
+$radius-corners: (
+  'tl': 'border-top-left-radius',
+  'tr': 'border-top-right-radius',
+  'bl': 'border-bottom-left-radius',
+  'br': 'border-bottom-right-radius',
+);
+
+@each $corner, $prop in $radius-corners {
+  @each $name, $value in $radii {
+    .rounded-#{$corner}-#{$name} {
+      #{$prop}: $value;
+    }
+  }
+}

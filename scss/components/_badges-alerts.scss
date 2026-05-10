@@ -1,0 +1,203 @@
+@use 'sass:map';
+
+// Fait principalement avec Claude.AI car aucune expérience dans la conception de badge actuellement
+
+// -----Variables locales-----
+$badge-font-size  : 0.75rem;
+$badge-font-weight: 500;
+$badge-padding    : 0.2rem 0.65rem;
+$badge-transition : all 0.2s ease;
+
+$alert-padding    : 1rem;
+$alert-radius     : 10px;
+$alert-transition : all 0.3s ease;
+
+
+// -----Couleurs-----
+
+$badge-colors: (
+  'primary': (
+    'bg'    : var(--color-primary),
+    'text'  : #fff,
+    'border': var(--color-primary),
+  ),
+  'success': (
+    'bg'    : #dcfce7,
+    'text'  : #15803d,
+    'border': #86efac,
+  ),
+  'danger': (
+    'bg'    : #fee2e2,
+    'text'  : #b91c1c,
+    'border': #fca5a5,
+  ),
+  'warning': (
+    'bg'    : #fef3c7,
+    'text'  : #b45309,
+    'border': #fcd34d,
+  ),
+  'neutral': (
+    'bg'    : #f3f4f6,
+    'text'  : #4b5563,
+    'border': #d1d5db,
+  ),
+);
+
+
+// -----Base des badges-----
+
+.badge {
+  display    : inline-flex;
+  align-items: center;
+  gap        : 0.3rem;
+  font-size  : $badge-font-size;
+  font-weight: $badge-font-weight;
+  padding    : $badge-padding;
+  white-space: nowrap;
+  border     : 1px solid transparent;
+  transition : $badge-transition;
+  line-height: 1.5;
+}
+
+
+// -----Formes des badges-----
+
+// Pill — complètement arrondi (défaut)
+.badge--pill {
+  border-radius: 9999px;
+}
+
+// Square — légèrement arrondi
+.badge--square {
+  border-radius: 6px;
+}
+
+
+// -----Variantes de couleur-----
+//    Génère .badge--primary, .badge--success, etc.
+//    Et leurs versions outline : .badge--outline-primary, etc.
+
+@each $name, $colors in $badge-colors {
+  $bg    : map.get($colors, 'bg');
+  $text  : map.get($colors, 'text');
+  $border: map.get($colors, 'border');
+
+  // Solid
+  .badge--#{$name} {
+    background-color: $bg;
+    color           : $text;
+    border-color    : $border;
+  }
+
+  // Outline — fond transparent, juste la bordure et le texte
+  .badge--outline-#{$name} {
+    background-color: transparent;
+    color           : $text;
+    border-color    : $border;
+  }
+}
+
+
+// -----Gestion des couleurs d'alertes-----
+
+$alert-colors: (
+  'info': (
+    'bg'    : #eff6ff,
+    'text'  : #1d4ed8,
+    'border': #bfdbfe,
+    'icon'  : #3b82f6,
+  ),
+  'success': (
+    'bg'    : #f0fdf4,
+    'text'  : #15803d,
+    'border': #bbf7d0,
+    'icon'  : #22c55e,
+  ),
+  'warning': (
+    'bg'    : #fffbeb,
+    'text'  : #b45309,
+    'border': #fde68a,
+    'icon'  : #f59e0b,
+  ),
+  'danger': (
+    'bg'    : #fef2f2,
+    'text'  : #b91c1c,
+    'border': #fecaca,
+    'icon'  : #ef4444,
+  ),
+);
+
+
+// -----Base alerte-----
+
+.alert {
+  display    : flex;
+  align-items: flex-start;
+  gap        : 0.75rem;
+  padding    : $alert-padding;
+  border-radius: $alert-radius;
+  border     : 1px solid transparent;
+  transition : $alert-transition;
+  line-height: 1.6;
+}
+
+
+// -----Icone alerte-----
+
+.alert__icon {
+  flex-shrink: 0;       // L'icône ne rétrécit jamais
+  font-size  : 1.25rem;
+  margin-top : 0.1rem;  // Alignement optique avec le texte
+}
+
+
+// -----Contenu alerte-----
+
+.alert__body {
+  flex: 1;  // Prend tout l'espace disponible
+}
+
+.alert__title {
+  font-weight  : 600;
+  font-size    : 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.alert__text {
+  font-size: 0.875rem;
+  opacity  : 0.9;
+}
+
+
+// -----Bouton fermer-----
+
+.alert__close {
+  background: none;
+  border    : none;
+  cursor    : pointer;
+  color     : inherit;
+  opacity   : 0.6;
+  padding   : 0;
+  font-size : 1rem;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease;
+
+  &:hover { opacity: 1; }
+}
+
+
+// -----Variantes de couleur des alertes-----
+
+//    Génère .alert--info, .alert--success, etc.
+
+@each $name, $colors in $alert-colors {
+  .alert--#{$name} {
+    background-color: map.get($colors, 'bg');
+    color           : map.get($colors, 'text');
+    border-color    : map.get($colors, 'border');
+
+    .alert__icon {
+      color: map.get($colors, 'icon');
+    }
+  }
+}

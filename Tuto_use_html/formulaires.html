@@ -1,0 +1,41 @@
+
+
+<!-- Champ classique avec floating label -->
+
+<div class="form-group">
+  <div class="input-floating">
+    <input class="input--classic" type="text" placeholder=" ">
+    <label class="form-label">Votre prénom</label>
+  </div>
+</div>
+
+
+<!-- Champ avec icône et état erreur -->
+
+<div class="form-group">
+  <label class="form-label form-label--required">Email</label>
+  <div class="input-icon">
+    <span class="input-icon__icon">✉</span>
+    <input class="input--classic is-error" type="email">
+  </div>
+  <span class="form-hint form-hint--error">Email invalide</span>
+</div>
+
+
+<!-- Input de recherche -->
+
+<div class="input-search">
+  <span class="input-search__icon">🔍</span>
+  <input class="input--classic" type="search" placeholder="Rechercher...">
+  <button class="input-search__clear" aria-label="Effacer">✕</button>
+</div>
+
+
+<!-- Checkbox et radio -->
+
+<label class="form-check">
+  <input type="checkbox"> Accepter les conditions
+</label>
+<label class="form-check">
+  <input type="radio" name="plan"> Mensuel
+</label>

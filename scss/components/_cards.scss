@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use '../abstracts/variables' as v;
 @use '../abstracts/mixins' as b;
 
 // -----Variables classique-----
@@ -97,17 +98,16 @@ $card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.14);
 // -----Variante horizontal-----
 
 .card--horizontal {
-    $test: "md";
-    @include b.respond-to($breakpoints, $test) { 
-        flex-direction: row;
+  @include b.respond-to('md', v.$breakpoints) {
+    flex-direction: row;
 
-        .card__image {
-            width       : 220px;
-            min-width   : 220px;
-            aspect-ratio: auto;
-            height      : auto;
-        }
+    .card__image {
+      width       : 220px;
+      min-width   : 220px;
+      aspect-ratio: auto;
+      height      : auto;
     }
+  }
 }
 
 

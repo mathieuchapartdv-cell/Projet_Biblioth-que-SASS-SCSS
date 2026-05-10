@@ -4,7 +4,7 @@
 // -----Mixin responsive-----
 
 
-@mixin respond-to($breakpoints, $breakpoint) {
+@mixin respond-to($breakpoint, $breakpoints) {
   $value: map.get($breakpoints, $breakpoint);
 
   @if $value == null {

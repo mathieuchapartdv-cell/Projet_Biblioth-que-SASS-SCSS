@@ -83,35 +83,4 @@ $text-sizes: (
 .capitalize  { text-transform: capitalize; }
 
 
-// -----Classes utilitaires --> espacements-----
-
-$spaces: (
-  '1' : $space-1,
-  '2' : $space-2,
-  '3' : $space-3,
-  '4' : $space-4,
-  '6' : $space-6,
-  '8' : $space-8,
-  '10': $space-10,
-  '12': $space-12,
-  '16': $space-16,
-);
-
-@each $name, $value in $spaces {
-  .mt-#{$name}  { margin-top    : $value; }
-  .mb-#{$name}  { margin-bottom : $value; }
-  .ml-#{$name}  { margin-left   : $value; }
-  .mr-#{$name}  { margin-right  : $value; }
-  .mx-#{$name}  { margin-left   : $value; margin-right : $value; }
-  .my-#{$name}  { margin-top    : $value; margin-bottom: $value; }
-  .m-#{$name}   { margin        : $value; }
-
-  .pt-#{$name}  { padding-top   : $value; }
-  .pb-#{$name}  { padding-bottom: $value; }
-  .pl-#{$name}  { padding-left  : $value; }
-  .pr-#{$name}  { padding-right : $value; }
-  .px-#{$name}  { padding-left  : $value; padding-right : $value; }
-  .py-#{$name}  { padding-top   : $value; padding-bottom: $value; }
-  .p-#{$name}   { padding       : $value; }
-}
 

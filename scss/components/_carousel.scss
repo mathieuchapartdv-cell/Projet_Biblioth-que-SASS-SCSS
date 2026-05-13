@@ -7,7 +7,11 @@
 // -----Variables locales-----
 
 $carousel-radius      : 12px;
-$carousel-ratio       : math.div(16, 7);
+$carousel-ratio       : math.div(16, 9);   // ratio par défaut
+$carousel-ratio-wide  : math.div(21, 9);   // cinémascope
+$carousel-ratio-square: 1;                  // carré
+$carousel-ratio-photo : math.div(4, 3);    // photo classique
+$carousel-ratio-port  : math.div(3, 4);    // portrait
 $carousel-transition  : transform 0.5s ease;
 $carousel-arrow-size  : 40px;
 $carousel-dot-size    : 8px;
@@ -38,6 +42,7 @@ $carousel-dot-active-w: 24px;
 // -----Slide-----
 
 .carousel__slide {
+  position: relative;
   flex-shrink : 0;
   width       : 100%;
   aspect-ratio: $carousel-ratio;
@@ -46,7 +51,6 @@ $carousel-dot-active-w: 24px;
   justify-content: center;
   flex-direction : column;
   gap         : 0.5rem;
-  padding     : 2rem;
   text-align  : center;
 
   img {
@@ -57,6 +61,9 @@ $carousel-dot-active-w: 24px;
     inset     : 0;
   }
 }
+
+
+
 
 .carousel__slide-title {
   font-size  : clamp(1.25rem, 3vw, 2rem);
@@ -73,6 +80,13 @@ $carousel-dot-active-w: 24px;
   z-index  : 2;
 }
 
+
+// -----Modificateurs de ratio-----
+
+.carousel--wide   .carousel__slide { aspect-ratio: $carousel-ratio-wide; }
+.carousel--square .carousel__slide { aspect-ratio: $carousel-ratio-square; }
+.carousel--photo  .carousel__slide { aspect-ratio: $carousel-ratio-photo; }
+.carousel--portrait .carousel__slide { aspect-ratio: $carousel-ratio-port; }
 
 // -----Voile sur les slides avec image-----
 // A voir ce que c'est, et comment l'adapter à mes goûts

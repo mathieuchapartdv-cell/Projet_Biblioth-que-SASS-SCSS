@@ -2080,15 +2080,15 @@
 }
 
 .carousel__slide {
+  position: relative;
   flex-shrink: 0;
   width: 100%;
-  aspect-ratio: 2.2857142857;
+  aspect-ratio: 1.7777777778;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 2rem;
   text-align: center;
 }
 .carousel__slide img {
@@ -2112,6 +2112,22 @@
   color: var(--color-text-muted);
   position: relative;
   z-index: 2;
+}
+
+.carousel--wide .carousel__slide {
+  aspect-ratio: 2.3333333333;
+}
+
+.carousel--square .carousel__slide {
+  aspect-ratio: 1;
+}
+
+.carousel--photo .carousel__slide {
+  aspect-ratio: 1.3333333333;
+}
+
+.carousel--portrait .carousel__slide {
+  aspect-ratio: 0.75;
 }
 
 .carousel__slide--overlay::before {

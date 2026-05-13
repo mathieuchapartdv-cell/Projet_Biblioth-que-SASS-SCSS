@@ -2,7 +2,6 @@
 
 
 // ─────────────────────────────────────────
-// FAIT PAR CLAUDE AI à vérifier plus tard
 // Voici le script JS nécessaire pour le bouton de basculement : 
 // ─────────────────────────────────────────
 
@@ -265,129 +264,129 @@ document.addEventListener('DOMContentLoaded', () => {
 // ─────────────────────────────────────────
 
 
-class Dropdown {
+// class Dropdown {
 
-  // ── 1. Constructeur ─────────────────────────────────────
+//   // ── 1. Constructeur ─────────────────────────────────────
 
-  constructor(element) {
-    this.dropdown = element;
-    this.trigger  = element.querySelector('.dropdown__trigger');
-    this.menu     = element.querySelector('.dropdown__menu');
-    this.items    = [...element.querySelectorAll('.dropdown__item:not(.is-disabled)')];
-    this.isOpen   = false;
-    this.focusIndex = -1;
+//   constructor(element) {
+//     this.dropdown = element;
+//     this.trigger  = element.querySelector('.dropdown__trigger');
+//     this.menu     = element.querySelector('.dropdown__menu');
+//     this.items    = [...element.querySelectorAll('.dropdown__item:not(.is-disabled)')];
+//     this.isOpen   = false;
+//     this.focusIndex = -1;
 
-    this.init();
-  }
-
-
-  // ── 2. Initialisation ───────────────────────────────────
-
-  init() {
-    // Clic sur le déclencheur
-    this.trigger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.toggle();
-    });
-
-    // Fermer quand on clique en dehors
-    document.addEventListener('click', (e) => {
-      if (!this.dropdown.contains(e.target)) {
-        this.close();
-      }
-    });
-
-    // Navigation au clavier
-    this.dropdown.addEventListener('keydown', (e) => {
-      this.handleKeyboard(e);
-    });
-  }
+//     this.init();
+//   }
 
 
-  // ── 3. Ouvrir / Fermer ─────────────────────────────────
+//   // ── 2. Initialisation ───────────────────────────────────
 
-  toggle() {
-    if (this.isOpen) this.close();
-    else this.open();
-  }
+//   init() {
+//     // Clic sur le déclencheur
+//     this.trigger.addEventListener('click', (e) => {
+//       e.stopPropagation();
+//       this.toggle();
+//     });
 
-  open() {
-    // Fermer tous les autres dropdowns ouverts
-    document.querySelectorAll('.dropdown.is-open').forEach((el) => {
-      if (el !== this.dropdown) {
-        el.classList.remove('is-open');
-      }
-    });
+//     // Fermer quand on clique en dehors
+//     document.addEventListener('click', (e) => {
+//       if (!this.dropdown.contains(e.target)) {
+//         this.close();
+//       }
+//     });
 
-    this.dropdown.classList.add('is-open');
-    this.isOpen = true;
-    this.focusIndex = -1;
-    this.trigger.setAttribute('aria-expanded', 'true');
-  }
-
-  close() {
-    this.dropdown.classList.remove('is-open');
-    this.isOpen = false;
-    this.focusIndex = -1;
-    this.trigger.setAttribute('aria-expanded', 'false');
-  }
+//     // Navigation au clavier
+//     this.dropdown.addEventListener('keydown', (e) => {
+//       this.handleKeyboard(e);
+//     });
+//   }
 
 
-  // ── 4. Navigation clavier ──────────────────────────────
-  //    Escape    : ferme le menu
-  //    ArrowDown : item suivant
-  //    ArrowUp   : item précédent
-  //    Enter     : active l'item sélectionné
-  //    Tab       : ferme le menu
+//   // ── 3. Ouvrir / Fermer ─────────────────────────────────
 
-  handleKeyboard(e) {
-    switch (e.key) {
+//   toggle() {
+//     if (this.isOpen) this.close();
+//     else this.open();
+//   }
 
-      case 'Escape':
-        this.close();
-        this.trigger.focus();
-        break;
+//   open() {
+//     // Fermer tous les autres dropdowns ouverts
+//     document.querySelectorAll('.dropdown.is-open').forEach((el) => {
+//       if (el !== this.dropdown) {
+//         el.classList.remove('is-open');
+//       }
+//     });
 
-      case 'ArrowDown':
-        e.preventDefault();
-        if (!this.isOpen) {
-          this.open();
-        }
-        this.focusIndex = Math.min(
-          this.focusIndex + 1,
-          this.items.length - 1
-        );
-        this.items[this.focusIndex].focus();
-        break;
+//     this.dropdown.classList.add('is-open');
+//     this.isOpen = true;
+//     this.focusIndex = -1;
+//     this.trigger.setAttribute('aria-expanded', 'true');
+//   }
 
-      case 'ArrowUp':
-        e.preventDefault();
-        this.focusIndex = Math.max(this.focusIndex - 1, 0);
-        this.items[this.focusIndex].focus();
-        break;
-
-      case 'Enter':
-      case ' ':
-        if (this.focusIndex >= 0) {
-          e.preventDefault();
-          this.items[this.focusIndex].click();
-          this.close();
-        }
-        break;
-
-      case 'Tab':
-        this.close();
-        break;
-    }
-  }
-}
+//   close() {
+//     this.dropdown.classList.remove('is-open');
+//     this.isOpen = false;
+//     this.focusIndex = -1;
+//     this.trigger.setAttribute('aria-expanded', 'false');
+//   }
 
 
-// ── 5. Initialisation automatique ─────────────────────────
-//    Cherche tous les .dropdown dans la page et les active.
+//   // ── 4. Navigation clavier ──────────────────────────────
+//   //    Escape    : ferme le menu
+//   //    ArrowDown : item suivant
+//   //    ArrowUp   : item précédent
+//   //    Enter     : active l'item sélectionné
+//   //    Tab       : ferme le menu
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.dropdown').forEach((el) => {
-    new Dropdown(el);
-  });
-});
+//   handleKeyboard(e) {
+//     switch (e.key) {
+
+//       case 'Escape':
+//         this.close();
+//         this.trigger.focus();
+//         break;
+
+//       case 'ArrowDown':
+//         e.preventDefault();
+//         if (!this.isOpen) {
+//           this.open();
+//         }
+//         this.focusIndex = Math.min(
+//           this.focusIndex + 1,
+//           this.items.length - 1
+//         );
+//         this.items[this.focusIndex].focus();
+//         break;
+
+//       case 'ArrowUp':
+//         e.preventDefault();
+//         this.focusIndex = Math.max(this.focusIndex - 1, 0);
+//         this.items[this.focusIndex].focus();
+//         break;
+
+//       case 'Enter':
+//       case ' ':
+//         if (this.focusIndex >= 0) {
+//           e.preventDefault();
+//           this.items[this.focusIndex].click();
+//           this.close();
+//         }
+//         break;
+
+//       case 'Tab':
+//         this.close();
+//         break;
+//     }
+//   }
+// }
+
+
+// // ── 5. Initialisation automatique ─────────────────────────
+// //    Cherche tous les .dropdown dans la page et les active.
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   document.querySelectorAll('.dropdown').forEach((el) => {
+//     new Dropdown(el);
+//   });
+// });

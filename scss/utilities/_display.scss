@@ -3,3 +3,13 @@
 @use '../abstracts/mixins' as m;
 
 
+.d-none         { display: none; }
+.d-block        { display: block; }
+.d-inline       { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-flex         { display: flex; }
+.d-inline-flex  { display: inline-flex; }
+.d-grid         { display: grid; }
+
+.invisible { visibility: hidden; }
+.visible   { visibility: visible; }

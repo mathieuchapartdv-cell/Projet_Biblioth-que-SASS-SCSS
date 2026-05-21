@@ -1,0 +1,47 @@
+@use '../abstracts/variables' as v;
+
+// Classes utilitaires Flexbox
+
+// Direction
+
+.flex-row {flex-direction: row;}
+.flex-row-reverse {flex-direction: row-reverse;}
+.flex-col {flex-direction: column;}
+.flex-col-reverse {flex-direction: column-reverse;}
+
+.flex-wrap {flex-wrap: wrap;}
+.flex-nowrap {flex-wrap: nowrap;}
+.flex-wrap-reverse {flex-wrap: wrap-reverse;}
+
+.justify-start {justify-content: start;}
+.justify-end {justify-content: end;}
+.justify-left {justify-content: left;}
+.justify-right {justify-content: right;}
+
+.justify-center {justify-content: center;}
+.justify-around {justify-content: space-around;}
+.justify-between {justify-content: space-between;}
+.justify-evenly {justify-content: space-evenly;}
+
+.align-start {align-items: flex-start;}
+.align-end {align-items: flex-end;}
+.align-center {align-items: center;}
+.align-stretch {align-items: stretch;}
+.align-baseline {align-items: baseline;}
+
+
+$gaps: (
+  '0' : 0,
+  '1' : 0.25rem,
+  '2' : 0.5rem,
+  '3' : 0.75rem,
+  '4' : 1rem,
+  '6' : 1.5rem,
+  '8' : 2rem,
+);
+
+@each $name, $value in $gaps {
+  .gap-#{$name}   { gap        : $value; }
+  .gap-x-#{$name} { column-gap : $value; }
+  .gap-y-#{$name} { row-gap    : $value; }
+}

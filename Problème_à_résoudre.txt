@@ -1,1 +1,0 @@
-Problème de JS dans le carousel --> La slide 1 est la 2 et les autres ne s'affichent pas

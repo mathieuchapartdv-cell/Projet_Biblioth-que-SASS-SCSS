@@ -1,0 +1,3 @@
+Carousel : 
+- Le rajout du carousel__slide--overlay permet de mettre la description de la slide en white et d'aposer un ombrage directement sur l'image de la slide
+- Attention aux nombres de slides, au bout d'un moment supprimer les boutons pour ne laisser que le compteur de slide.

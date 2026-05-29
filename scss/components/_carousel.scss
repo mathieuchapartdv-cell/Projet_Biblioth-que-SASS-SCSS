@@ -16,6 +16,7 @@ $carousel-transition  : transform 0.5s ease;
 $carousel-arrow-size  : 40px;
 $carousel-dot-size    : 8px;
 $carousel-dot-active-w: 24px;
+$carousel-max-width: 1100px;   // largeur max sur grand écran
 
 
 // -----Conteneur principal-----
@@ -23,6 +24,8 @@ $carousel-dot-active-w: 24px;
 .carousel {
   position     : relative;
   width        : 100%;
+  max-width    : $carousel-max-width; 
+  margin-inline: auto;
   overflow     : hidden;
   border-radius: $carousel-radius;
   background   : var(--color-bg-subtle);
@@ -51,6 +54,7 @@ $carousel-dot-active-w: 24px;
   justify-content: center;
   flex-direction : column;
   gap         : 0.5rem;
+
   text-align  : center;
 
   img {
@@ -63,6 +67,12 @@ $carousel-dot-active-w: 24px;
 }
 
 
+// Carrousel à une seule slide : on masque les contrôles inutiles
+.carousel--single {
+  .carousel__arrow,
+  .carousel__dots,
+  .carousel__progress { display: none; }
+}
 
 
 .carousel__slide-title {
@@ -75,9 +85,11 @@ $carousel-dot-active-w: 24px;
 
 .carousel__slide-text {
   font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  max-width: 80ch;
   color    : var(--color-text-muted);
   position : relative;
   z-index  : 2;
+  padding: 1rem 1.5rem;
 }
 
 
@@ -127,6 +139,8 @@ $carousel-dot-active-w: 24px;
   background: rgba(255, 255, 255, 0.9);
   color     : #333;
 
+
+  
   &:hover {
     background: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -134,7 +148,17 @@ $carousel-dot-active-w: 24px;
 
   &--prev { left : 1rem; }
   &--next { right: 1rem; }
+
+  @media (max-width: 768px) {
+    background: rgba(255, 255, 255, 0.4);
+    &:hover,
+    &:active {
+      background: rgba(255, 255, 255, 0.65);
+      box-shadow : none;
+    }
+  }
 }
+
 
 
 // -----Dots (les indicateurs de positionnement dans le carousel)-----
@@ -142,6 +166,7 @@ $carousel-dot-active-w: 24px;
 .carousel__dots {
   display        : flex;
   justify-content: center;
+  flex-wrap      : wrap; 
   gap            : 6px;
   padding        : 0.75rem 0;
 }
@@ -149,6 +174,7 @@ $carousel-dot-active-w: 24px;
 .carousel__dot {
   width        : $carousel-dot-size;
   height       : $carousel-dot-size;
+  flex-shrink  : 0;
   border-radius: 50%;
   border       : none;
   cursor       : pointer;
@@ -189,6 +215,26 @@ $carousel-dot-active-w: 24px;
   transition: width linear;
   z-index   : 3;
 }
+
+// -----Adaptation à l'orientation du téléphone-----
+
+// Téléphone en portrait : une image trop "16/9" est rikiki (cf ton screen mobile).
+// On passe à un ratio plus haut pour que l'image respire.
+@media (max-width: 768px) and (orientation: portrait) {
+  .carousel__slide { aspect-ratio: $carousel-ratio-photo; } // 4/3, à ajuster
+}
+
+// Téléphone en paysage : la hauteur de l'écran est très limitée.
+// On contraint pour que le carrousel ne déborde pas hors de l'écran.
+@media (orientation: landscape) and (max-height: 600px) {
+  .carousel__slide {
+    aspect-ratio: $carousel-ratio-wide;  // 21/9, bien adapté au paysage
+    max-height  : 80vh;                  // garde de la place pour les dots
+  }
+}
+
+
+
 
 
 

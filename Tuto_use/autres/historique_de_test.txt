@@ -1,0 +1,9 @@
+Caroussel: 
+- Médiéval = ok
+- Classique = ok
+- Ratio 16/9 + Cinémascope = ok
+- Ratio square (carré) = pas vraiment carré
+- Vérification du centrage = ok
+- Reponsive = ok
+- Rotation téléphone = ok
+

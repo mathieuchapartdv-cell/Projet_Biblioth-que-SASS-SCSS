@@ -1,9 +1,5 @@
 @use './layout/grid';
 
-@use './utilities/display';
-@use './utilities/flex';
-@use './utilities/sizing';
-@use './utilities/spacing';
 
 @use './abstracts/functions';
 @use './abstracts/mixins';
@@ -23,6 +19,10 @@
 @use './components/dropdown';
 @use './components/forms';
 
+@use './utilities/display';
+@use './utilities/flex';
+@use './utilities/sizing';
+@use './utilities/spacing';
 
 
 @use './themes/theme';

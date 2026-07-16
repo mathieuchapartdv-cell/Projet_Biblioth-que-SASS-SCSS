@@ -81,3 +81,124 @@
 
 
 
+<div class="fil-ariane container small text-secondary pt-4 pb-1 d-flex gap-2">
+  <a href="#">Accueil</a><span>›</span>
+  <a href="#">Sérums</a><span>›</span>
+  <span style="color:#5a5a5a;">Sérum Vitamin C Éclat</span>
+</div>
+
+
+<!-- ============ FICHE PRODUIT (galerie + achat) =================== -->
+<section class="container py-4">
+  <div class="row g-5 align-items-start">
+
+    <!-- COLONNE GAUCHE : galerie -->
+    <div class="col-12 col-lg-6">
+      <div class="galerie-sticky">
+
+        <!-- image principale -->
+        <div class="image-principale position-relative d-flex align-items-end justify-content-center">
+          <span class="badge position-absolute top-0 start-0 m-3" style="background:#fb2c36;">-27%</span>
+          <button id="btn-wishlist" type="button" aria-label="Ajouter à la wishlist"
+            class="btn position-absolute top-0 end-0 m-3 rounded-circle d-flex align-items-center justify-content-center"
+            style="width:42px;height:42px;background:rgba(255,255,255,.85);box-shadow:0 2px 8px rgba(0,0,0,.08);">
+            <i class="fa-regular fa-heart" style="color:#c87f86;"></i>
+          </button>
+          <!-- Remplace ce bloc par : <img src="images/serum-vitc.jpg" alt="..."> -->
+          <span class="mb-4 small text-muted px-3 py-1 rounded-pill" style="background:rgba(255,255,255,.55);">flacon —
+            vue face</span>
+        </div>
+
+        <!-- vignettes : la 1re est active au chargement -->
+        <div class="d-flex gap-2 mt-3">
+          <button class="vignette active" data-titre="flacon — vue face"></button>
+          <button class="vignette" data-titre="texture / swatch"></button>
+          <button class="vignette" data-titre="packaging"></button>
+          <button class="vignette" data-titre="en situation"></button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COLONNE DROITE : bloc d'achat -->
+    <div class="col-12 col-lg-6">
+
+      <p class="surtitre-marque mb-2">GlowLab</p>
+      <h1 class="titre-produit h2 mb-3">Sérum Vitamin C Éclat</h1>
+
+      <!-- note + lien vers les avis -->
+      <button id="lien-avis" type="button"
+        class="btn btn-link p-0 text-decoration-none d-inline-flex align-items-center gap-2 mb-3">
+        <span class="etoiles">★★★★★</span>
+        <span class="fw-semibold" style="color:var(--texte);">4,8</span>
+        <span class="text-secondary text-decoration-underline">128 avis</span>
+      </button>
+
+      <!-- atouts -->
+      <ul class="atouts-fiche list-unstyled d-flex flex-column gap-2 mb-4">
+        <li class="d-flex gap-2"><span class="puce">✦</span>Illumine, unifie le teint et booste l'éclat dès 7 jours</li>
+        <li class="d-flex gap-2"><span class="puce">✦</span>Concentré à 15% en Vitamine C stabilisée + acide
+          hyaluronique</li>
+        <li class="d-flex gap-2"><span class="puce">✦</span>Formule naturelle, vegan, convient aux peaux sensibles</li>
+      </ul>
+
+      <div class="d-flex align-items-baseline gap-3 mb-1">
+        <span class="prix-actuel" id="prix-actuel">39,90 €</span>
+        <span class="prix-barre fs-5" id="prix-barre">54,90 €</span>
+        <span class="badge-remise badge rounded px-2 py-1" id="badge-remise">-27%</span>
+      </div>
+      <p class="economie small mb-4" id="economie">Vous économisez 15,00 €</p>
+
+      <!-- contenance -->
+      <p class="small fw-semibold mb-2" style="letter-spacing:.04em;">CONTENANCE</p>
+      <div class="d-flex gap-3 mb-4">
+        <button class="variante active p-3" data-prix="39.90" data-old="54.90">
+          <span class="nom d-block">30 ml</span>
+          <span class="sous d-block">Format découverte</span>
+        </button>
+        <button class="variante p-3" data-prix="59.90" data-old="79.90">
+          <span class="nom d-block">50 ml</span>
+          <span class="sous d-block">Format original</span>
+        </button>
+      </div>
+
+
+      
+      <!-- quantité + ajouter -->
+      <div class="d-flex gap-3 mb-3">
+        <div class="selecteur-qte d-flex align-items-center">
+          <button type="button" id="qte-moins" aria-label="Diminuer">−</button>
+          <span id="qte" class="text-center fw-semibold" style="width:36px;">1</span>
+          <button type="button" id="qte-plus" aria-label="Augmenter">+</button>
+        </div>
+        <button class="btn-rose btn-ajouter flex-fill d-flex align-items-center justify-content-center gap-2"
+          id="btn-ajouter" type="button">
+          <i class="fa-solid fa-bag-shopping"></i> Ajouter au panier
+        </button>
+      </div>
+
+      <!-- stock -->
+      <div class="d-flex align-items-center gap-2 mb-4 small text-secondary">
+        <span class="pastille-stock"></span>
+        En stock — expédié sous 24h
+      </div>
+
+      <!-- réassurance : 4 garanties sur 2 colonnes -->
+      <div class="reassurance row g-3 py-4">
+        <div class="col-6 d-flex align-items-center gap-2 small">
+          <i class="fa-solid fa-leaf"></i> 100% Naturel
+        </div>
+        <div class="col-6 d-flex align-items-center gap-2 small">
+          <i class="fa-solid fa-heart"></i> Cruelty-free
+        </div>
+        <div class="col-6 d-flex align-items-center gap-2 small">
+          <i class="fa-solid fa-truck"></i> Livraison 48h
+        </div>
+        <div class="col-6 d-flex align-items-center gap-2 small">
+          <i class="fa-solid fa-rotate-left"></i> Retours 30 jours
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
